@@ -101,13 +101,10 @@ namespace ImageTool {
         }
 
         private void PicZoom() {
-            Rectangle cropRect = new Rectangle(xOffset, yOffset, imageWidth, imageHeight);
-            Bitmap src = image_in as Bitmap;
-            var image_temp = src.Clone(cropRect, src.PixelFormat);
-            picIn.Image = image_temp;
-        }
+            Rectangle cropRect1 = new Rectangle(xOffset, yOffset, imageWidth, imageHeight);
+            Bitmap src1 = image_in as Bitmap;
+            picIn.Image = src1.Clone(cropRect1, src1.PixelFormat);
 
-        private void PicFilter() {
             Mat image_opencv = BitmapConverter.ToMat(new Bitmap(image_in));
             Size dsize = new Size(0, 0);
             int fx = zoom;
@@ -116,25 +113,32 @@ namespace ImageTool {
             MemoryStream ms_out = new MemoryStream(image_filtered.ToBytes());
             image_out = Image.FromStream(ms_out);
 
-            Rectangle cropRect = new Rectangle(xOffset * zoom, yOffset * zoom, image_out.Width / zoom, image_out.Height / zoom);
-            Bitmap src = image_out as Bitmap;
-            var image_temp = src.Clone(cropRect, src.PixelFormat);
-            picOut.Image = image_temp;
+            Rectangle cropRect2 = new Rectangle(xOffset * zoom, yOffset * zoom, image_out.Width / zoom, image_out.Height / zoom);
+            Bitmap src2 = image_out as Bitmap;
+            picOut.Image = src2.Clone(cropRect2, src2.PixelFormat);
+        }
+
+        private void PicMove() {
+            Rectangle cropRect1 = new Rectangle(xOffset, yOffset, imageWidth, imageHeight);
+            Bitmap src1 = image_in as Bitmap;
+            picIn.Image = src1.Clone(cropRect1, src1.PixelFormat);
+
+            Rectangle cropRect2 = new Rectangle(xOffset * zoom, yOffset * zoom, image_out.Width / zoom, image_out.Height / zoom);
+            Bitmap src2 = image_out as Bitmap;
+            picOut.Image = src2.Clone(cropRect2, src2.PixelFormat);
         }
 
         private void TbarWidth_Scroll(object sender, EventArgs e) {
             if (image_in != null) {
                 xOffset = tbarWidth.Value;
-                PicZoom();
-                PicFilter();
+                PicMove();
             }
         }
 
         private void TbarHeight_Scroll(object sender, EventArgs e) {
             if (image_in != null) {
                 yOffset = tbarHeight.Value;
-                PicZoom();
-                PicFilter();
+                PicMove();
             }
         }
 
@@ -164,6 +168,9 @@ namespace ImageTool {
                     interpolation = InterpolationFlags.LinearExact;
                     break;
             }
+            if (image_in != null) {
+                PicZoom();
+            }
         }
 
         private void TbarZoom_Scroll(object sender, EventArgs e) {
@@ -190,7 +197,6 @@ namespace ImageTool {
             tbarHeight.TickFrequency = 1;
             yOffset = 0;
             PicZoom();
-            PicFilter();
         }
     }
 }
