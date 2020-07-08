@@ -13,14 +13,11 @@ namespace ImageTool {
         }
 
         private int zoom;
-        private int xOffset;
-        private int yOffset;
-        private int imageWidth;
-        private int imageHeight;
-        private Image image_in;
-        private Image image_out;
+        private int xOffset, yOffset;
+        private int imageWidth, imageHeight;
+        private Image image_in, image_out;
         private InterpolationFlags interpolation;
-
+        private double alpha, beta, gamma;
 
         private void BtnInput_Click(object sender, EventArgs e) {
             OpenFileDialog fileDialog = new OpenFileDialog {
@@ -110,6 +107,13 @@ namespace ImageTool {
             int fx = zoom;
             int fy = zoom;
             Mat image_filtered = image_opencv.Resize(dsize, fx, fy, interpolation);
+
+            Mat blur = new Mat();
+            Mat image_usm = new Mat();
+
+            Cv2.GaussianBlur(image_filtered, blur, new Size(0, 0), 25);
+            Cv2.AddWeighted(image_filtered, alpha, blur, -1 * beta, gamma, image_usm);
+
             MemoryStream ms_out = new MemoryStream(image_filtered.ToBytes());
             image_out = Image.FromStream(ms_out);
 
@@ -126,6 +130,21 @@ namespace ImageTool {
             Rectangle cropRect2 = new Rectangle(xOffset * zoom, yOffset * zoom, image_out.Width / zoom, image_out.Height / zoom);
             Bitmap src2 = image_out as Bitmap;
             picOut.Image = src2.Clone(cropRect2, src2.PixelFormat);
+        }
+
+        private void TbarAlpha_Scroll(object sender, EventArgs e) {
+            alpha = tbarAlpha.Value;
+            PicZoom();
+        }
+
+        private void TbarBeta_Scroll(object sender, EventArgs e) {
+            beta = tbarBeta.Value;
+            PicZoom();
+        }
+
+        private void TbarGamma_Scroll(object sender, EventArgs e) {
+            gamma = tbarGamma.Value;
+            PicZoom();
         }
 
         private void TbarWidth_Scroll(object sender, EventArgs e) {

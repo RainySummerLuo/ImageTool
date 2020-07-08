@@ -23,6 +23,7 @@
         /// 使用代码编辑器修改此方法的内容。
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.picIn = new System.Windows.Forms.PictureBox();
             this.picOut = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,17 +38,17 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.trackBar2 = new System.Windows.Forms.TrackBar();
-            this.trackBar3 = new System.Windows.Forms.TrackBar();
-            this.trackBar4 = new System.Windows.Forms.TrackBar();
+            this.tbarAlpha = new System.Windows.Forms.TrackBar();
+            this.tbarBeta = new System.Windows.Forms.TrackBar();
+            this.tbarGamma = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.picIn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picOut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbarWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbarHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbarZoom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbarAlpha)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbarBeta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbarGamma)).BeginInit();
             this.SuspendLayout();
             // 
             // picIn
@@ -178,69 +179,69 @@
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(45, 532);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(103, 25);
+            this.label5.Size = new System.Drawing.Size(88, 32);
             this.label5.TabIndex = 12;
-            this.label5.Text = "Brightness: ";
+            this.label5.Text = "Alpha: ";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(45, 575);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(88, 25);
+            this.label6.Size = new System.Drawing.Size(75, 21);
             this.label6.TabIndex = 13;
-            this.label6.Text = "Contrast: ";
+            this.label6.Text = "Beta: ";
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(45, 619);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(102, 25);
+            this.label7.Size = new System.Drawing.Size(87, 21);
             this.label7.TabIndex = 14;
-            this.label7.Text = "Saturation: ";
+            this.label7.Text = "Gamma:";
             // 
-            // trackBar2
+            // tbarAlpha
             // 
-            this.trackBar2.Location = new System.Drawing.Point(154, 532);
-            this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Size = new System.Drawing.Size(655, 69);
-            this.trackBar2.TabIndex = 15;
-            this.trackBar2.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tbarAlpha.Location = new System.Drawing.Point(139, 532);
+            this.tbarAlpha.Name = "tbarAlpha";
+            this.tbarAlpha.Size = new System.Drawing.Size(670, 69);
+            this.tbarAlpha.TabIndex = 15;
+            this.tbarAlpha.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tbarAlpha.Scroll += new System.EventHandler(this.TbarAlpha_Scroll);
             // 
-            // trackBar3
+            // tbarBeta
             // 
-            this.trackBar3.Location = new System.Drawing.Point(154, 575);
-            this.trackBar3.Name = "trackBar3";
-            this.trackBar3.Size = new System.Drawing.Size(655, 69);
-            this.trackBar3.TabIndex = 16;
-            this.trackBar3.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tbarBeta.Location = new System.Drawing.Point(138, 575);
+            this.tbarBeta.Name = "tbarBeta";
+            this.tbarBeta.Size = new System.Drawing.Size(671, 69);
+            this.tbarBeta.TabIndex = 16;
+            this.tbarBeta.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tbarBeta.Scroll += new System.EventHandler(this.TbarBeta_Scroll);
             // 
-            // trackBar4
+            // tbarGamma
             // 
-            this.trackBar4.Location = new System.Drawing.Point(154, 619);
-            this.trackBar4.Name = "trackBar4";
-            this.trackBar4.Size = new System.Drawing.Size(655, 69);
-            this.trackBar4.TabIndex = 17;
-            this.trackBar4.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tbarGamma.Location = new System.Drawing.Point(138, 619);
+            this.tbarGamma.Name = "tbarGamma";
+            this.tbarGamma.Size = new System.Drawing.Size(671, 69);
+            this.tbarGamma.TabIndex = 17;
+            this.tbarGamma.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tbarGamma.Scroll += new System.EventHandler(this.TbarGamma_Scroll);
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(852, 678);
-            this.Controls.Add(this.trackBar4);
-            this.Controls.Add(this.trackBar3);
-            this.Controls.Add(this.trackBar2);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.tbarGamma);
+            this.Controls.Add(this.tbarBeta);
+            this.Controls.Add(this.tbarAlpha);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cboxInterpolation);
@@ -252,18 +253,19 @@
             this.Controls.Add(this.lblZoom);
             this.Controls.Add(this.tbarZoom);
             this.Controls.Add(this.tbarWidth);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmMain";
-            this.Text = "Form1";
+            this.Text = "Image Enlargement & USM Sharpen";
             this.Load += new System.EventHandler(this.FrmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picIn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picOut)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbarWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbarHeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbarZoom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbarAlpha)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbarBeta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbarGamma)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,9 +287,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TrackBar trackBar2;
-        private System.Windows.Forms.TrackBar trackBar3;
-        private System.Windows.Forms.TrackBar trackBar4;
+        private System.Windows.Forms.TrackBar tbarAlpha;
+        private System.Windows.Forms.TrackBar tbarBeta;
+        private System.Windows.Forms.TrackBar tbarGamma;
     }
 }
 
